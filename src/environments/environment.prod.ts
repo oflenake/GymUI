@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiEndpoint: 'gymapp.vision-dream.local'
+  apiEndpoint: 'http://gymapp.vision-dream.local'
 };
