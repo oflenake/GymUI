@@ -46,3 +46,4 @@ Thumbs.db
 # IDE - VS2017 and VSCode
 .vs/slnx.sqlite
 .vs/slnx.sqlite-journal
+.vs/GymUI/v15/.suo
