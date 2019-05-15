@@ -42,3 +42,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# IDE - VS2017 and VSCode
+.vs/slnx.sqlite
+.vs/slnx.sqlite-journal
