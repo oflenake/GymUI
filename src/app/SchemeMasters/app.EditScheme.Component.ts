@@ -36,20 +36,16 @@ export class EditSchemeComponent implements OnInit {
         }
     }
 
-
     onSubmit() 
     {
-   
-
-        this._SchemeService.UpdateScheme(this.SchemeForms)
+      this._SchemeService.UpdateScheme(this.SchemeForms)
         .subscribe(response => 
         {
-            if(response.StatusCode == "200")
-            {
-                alert('Updated Scheme Successfully');
-                this._Route.navigate(['/Scheme/All']);
-            }
+          if (response.StatusCode == "200")
+          {
+            alert('Updated Scheme Successfully');
+            this._Route.navigate(['/Scheme/All']);
+          }
         })
     }
-
 }

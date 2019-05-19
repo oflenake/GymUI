@@ -12,12 +12,15 @@ import { environment } from "src/app/Shared/environment";
 })
 
 export class SchemeService {
+  // Field Properties
+    private _component: string;
     private data: any;
     private apiUrl = environment.apiEndpoint + "/api/Scheme/";
     token: any;
     username: any;
 
-    constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {
+        this._component = "SchemeService";
         this.data = JSON.parse(localStorage.getItem('AdminUser'));
         this.token = this.data.token;
         this.username = this.data.username
@@ -42,7 +45,7 @@ export class SchemeService {
         );
     }
 
-    // Get All Scheme List
+    // Get All Active Scheme List (SchemeDropdown)
     public GetAllActiveSchemeList() {
         var apiUrl = "	http://localhost:54354/api/SchemeDropdown/";
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -52,7 +55,7 @@ export class SchemeService {
         );
     }
 
-    // Get All Scheme By ID
+    // Get Scheme By ID
     public GetSchemeById(schemeId) {
         var editUrl = this.apiUrl + '/' + schemeId;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -73,6 +76,7 @@ export class SchemeService {
             );
     }
 
+    // Delete Scheme
     public DeleteScheme(schemeId) {
         var deleteUrl = this.apiUrl + '/' + schemeId;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -83,16 +87,17 @@ export class SchemeService {
             );
     }
 
+    // Private helper handleError function
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+          // A client-side or network error occurred. Handle it accordingly.
+          console.error(`[${this._component}] - An error occurred:`, error.error.message);
         } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
-            console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+          console.error(`[${this._component}] - Backend returned code ${error.status}, ` + `body was: ${error.error}`);
         }
         // return an observable with a user-facing error message
-        return throwError('Something bad happened; please try again later.');
+      return throwError(`[${this._component}] - Something bad happened; please try again later.`);
     };
 }

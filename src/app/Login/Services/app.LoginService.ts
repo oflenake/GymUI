@@ -11,12 +11,13 @@ import { Router } from '@angular/router';
 // LoginService service class
 export class LoginService {
   // Field Properties
+  private _component: string;
   public token: string;
   private apiUrl = "	http://localhost:54354/api/Authenticate/";
 
   // Constructor
   constructor(private _http: HttpClient, private _Route: Router) {
-
+    this._component = "LoginService";
   }
 
   // Function Methods - validateLoginUser function
@@ -56,13 +57,13 @@ export class LoginService {
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-      console.error('A client-side or network error occurred: ' + `.`, error.error.message);
+      console.error(`[${this._component}] - A client-side or network error occurred: ` + `.`, error.error.message);
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
-      console.error(`The backend returned code: '${error.status}', ` + `and the body was: ${error.error}.`);
+      console.error(`[${this._component}] - The backend returned code: '${error.status}', ` + `and the body was: ${error.error}.`);
     }
     // Return an observable with a user-facing friendly error message.
-    return throwError('Something bad happened. Please try again later. Alernatively, report the error to your system administrator.');
+    return throwError(`[${this._component}] - Something bad happened. Please try again later. Alernatively, report the error to your system administrator.`);
   };
 }

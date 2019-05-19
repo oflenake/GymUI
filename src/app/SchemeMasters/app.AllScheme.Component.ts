@@ -12,6 +12,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 })
 
 export class AllSchemeComponent implements OnInit {
+  // Field Properties
   private _SchemeService;
   AllSchemeList: SchemeMasterViewModel[];
   errorMessage: any;
@@ -20,36 +21,32 @@ export class AllSchemeComponent implements OnInit {
   displayedColumns: string[] = ['SchemeID', 'SchemeName', 'Status', 'Createddate', 'EditAction', 'DeleteAction'];
   dataSource: any;
   
-  
-
-
+  // Constructor
   constructor(private location: Location, private _Route: Router, private schemeService: SchemeService) {
-    this._SchemeService = schemeService;
-
-  
+    this._SchemeService = schemeService;  
   }
 
+  // Initialize
   ngOnInit() {
-
-
     this._SchemeService.GetAllScheme().subscribe(
       AllScheme => {
         this.AllSchemeList = AllScheme
         this.dataSource = new MatTableDataSource(this.AllSchemeList);
         this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-       
+        this.dataSource.paginator = this.paginator;       
       },
       error => this.errorMessage = <any>error
     );
-
   }
-  
+
+  // applyFilter method function
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  // Delete method function
   Delete(schemeId): void {
-    if (confirm("Are you sure to delete Scheme ?")) {
+    if (confirm("Are you sure to delete Scheme?")) {
       this._SchemeService.DeleteScheme(schemeId).subscribe
         (
         response => {
@@ -65,5 +62,4 @@ export class AllSchemeComponent implements OnInit {
         )
     }
   }
-
 }

@@ -13,13 +13,15 @@ import { environment } from 'src/app/Shared/environment';
 export class UserService 
 {
     // Field Properties
+    private _component: string;
     private data: any;
     private apiUrl = environment.apiEndpoint + "/api/User/";
     token: any;
     username: any;
 
     // Constructor
-    constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {
+        this._component = "UserService";
         this.data = JSON.parse(localStorage.getItem('AdminUser'));
         this.token = this.data.token;
     }
@@ -46,7 +48,7 @@ export class UserService
             );
     }
 
-    // Get MemberBy Id
+    // Get UserBy Id
     public GetUserId(Id) {
         var editUrl = this.apiUrl + Id;
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -65,7 +67,7 @@ export class UserService
         );
     }
 
-    // Get All Users
+    // Get All Active Users List (UsersDropdown)
     public GetAllUsersDropdown() {
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         headers = headers.append('Authorization', 'Bearer ' + `${this.token}`);
@@ -89,13 +91,13 @@ export class UserService
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
             // A client-side or network error occurred. Handle it accordingly.
-            console.error('An error occurred:', error.error.message);
+            console.error(`[${this._component}] - An error occurred:`, error.error.message);
         } else {
             // The backend returned an unsuccessful response code.
             // The response body may contain clues as to what went wrong,
-            console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+            console.error(`[${this._component}] - Backend returned code ${error.status}, ` + `body was: ${error.error}`);
         }
         // return an observable with a user-facing error message
-        return throwError('Something bad happened; please try again later.');
+        return throwError(`[${this._component}] - Something bad happened; please try again later.`);
     };
 }

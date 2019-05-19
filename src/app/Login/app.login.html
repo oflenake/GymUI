@@ -28,8 +28,9 @@
                 <div class="form-group">
                   <label for="name">Username</label>
                   <input autofocus type="text" class="form-control" name="Username" [(ngModel)]="LoginModel.Username"
+                         title="Not more than 50 characters" placeholder="Username / E-mail Address"
                          maxlength="50" #refUsername="ngModel" id="Username" required>
-                  <!-- Username Field - Errors Section -->
+                  <!-- Username Field - Validation Section -->
                   <div *ngIf="!refUsername.valid  && (refUsername.dirty || refUsername.touched)" class="alert alert-danger">
                     <div [hidden]="!refUsername.errors.required">
                       Username is required
@@ -40,16 +41,36 @@
                 <div class="form-group">
                   <label for="name">Password</label>
                   <input autofocus type="password" class="form-control" name="Password" [(ngModel)]="LoginModel.Password"
+                         title="Not more than 50 characters" placeholder="Password"
                          maxlength="50" #refPassword="ngModel" id="Password" required>
-                  <!-- Password Field - Errors Section -->
+                  <!-- Password Field - Validation Section -->
                   <div *ngIf="!refPassword.valid  && (refPassword.dirty || refPassword.touched)" class="alert alert-danger">
                     <div [hidden]="!refPassword.errors.required">
                       Password is required
                     </div>
                   </div>
                 </div>
+                <!-- Remember me Checkbox -->
+                <div class="form-group">
+                  <label for="name">
+                    <input style="margin-top: 10px" type="checkbox" name="RememberMe" [(ngModel)]="LoginModel.RememberMe"
+                           maxlength="50" #refRememberMe="ngModel" id="RememberMe" required> Remember me
+                  </label>
+                </div>
                 <!-- Change this to a button or input when using this as a form -->
-                <button type="submit" [disabled]="!f.form.valid" class="btn btn-lg btn-success btn-block">Login</button>
+                <button type="submit" [disabled]="!f.form.valid"
+                        class="btn btn-lg btn-success btn-block">Login
+                </button>
+                <div class="d-flex justify-content-around">
+                  <!-- Forgot Username / Password -->
+                  <div class="checkbox mb-3">
+                    <a [routerLink]='["/#/Login"]'>Forgot Username / Password?</a>
+                  </div>
+                  <!-- New users -->
+                  <div class="checkbox mb-3">
+                    <p>Are you a new user?</p>
+                  </div>
+                </div>
               </fieldset>
             </form>
           </div>

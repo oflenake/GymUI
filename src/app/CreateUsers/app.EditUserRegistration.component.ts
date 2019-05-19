@@ -21,7 +21,6 @@ export class EditUserRegistrationComponent implements OnInit {
     Id: any;
     errorMessage: any;
 
-
     constructor(
         private datePipe: DatePipe,
         private _Route: Router,
@@ -43,11 +42,7 @@ export class EditUserRegistrationComponent implements OnInit {
             error => this.errorMessage = <any>error);
     }
 
-
-
     onSubmit() {
-        
-
         this._userService.UpdateUser(this.UserModel).subscribe(
             response => {
                 this.output = response

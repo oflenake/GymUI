@@ -12,6 +12,7 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 })
 
 export class AllUserRegistrationComponent implements OnInit {
+    // Field Properties
     private _userService;
     AllUserList: UserModel[];
     errorMessage: any;
@@ -20,10 +21,12 @@ export class AllUserRegistrationComponent implements OnInit {
     displayedColumns: string[] = ['Id', 'UserName', 'FullName', 'EmailId', 'Contactno', 'Status', 'EditAction', 'DeleteAction'];
     dataSource: any;
 
+    // Constructor
     constructor(private location: Location, private _Route: Router, private userService: UserService) {
         this._userService = userService;
     }
 
+    // Initialize
     ngOnInit() {
         this._userService.GetAllUsers().subscribe(
             allUsers => {
@@ -36,11 +39,14 @@ export class AllUserRegistrationComponent implements OnInit {
         );
     }
 
+    // applyFilter method function
     applyFilter(filterValue: string) {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
+
+    // Delete method function
     Delete(Id): void {
-        if (confirm("Are you sure to delete User ?")) {
+        if (confirm("Are you sure to delete User?")) {
             this._userService.DeleteUser(Id).subscribe
                 (
                 response => {
@@ -56,5 +62,4 @@ export class AllUserRegistrationComponent implements OnInit {
                 )
         }
     }
-
 }

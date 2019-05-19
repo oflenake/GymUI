@@ -7,5 +7,5 @@ export class UserModel
     public Contactno: string;
     public Password: string;
     public Status: boolean;
-    
+    public RememberMe: boolean;
 }
