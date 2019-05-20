@@ -29,11 +29,11 @@ export class LoginService {
         console.log(data);
 
         if (data.Token != null) {
-          if (data.Usertype == "2") {
+          if (data.Usertype == "2" || data.Usertype == "3") {
             // Store Username and Jason Web Token (Jwt) token in local storage to keep Current User logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify({ username: loginmodel.Username, token: data.Token }));
           }
-          else if (data.Usertype == "1") {
+          else if (data.Usertype == "1" || data.Usertype == "4") {
             // Store Username and Jason Web Token (Jwt) token in local storage to keep Admin User logged in between page refreshes
             localStorage.setItem('AdminUser', JSON.stringify({ username: loginmodel.Username, token: data.Token }));
           }

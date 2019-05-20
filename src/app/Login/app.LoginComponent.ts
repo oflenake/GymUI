@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         }
 
         // Admin User
-        if (response.Usertype == "1") {
+        if (response.Usertype == "1" || response.Usertype == "4") {
           let config = new MatSnackBarConfig();
           config.duration = this.setAutoHide ? this.autoHide : 0;
           config.verticalPosition = this.verticalPosition;
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
         }
 
         // Current User
-        if (response.Usertype == "2") {
+        if (response.Usertype == "2" || response.Usertype == "3") {
           let config = new MatSnackBarConfig();
           config.duration = this.setAutoHide ? this.autoHide : 0;
           config.verticalPosition = this.verticalPosition;

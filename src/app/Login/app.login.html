@@ -51,25 +51,26 @@
                   </div>
                 </div>
                 <!-- Remember me Checkbox -->
-                <div class="form-group">
+                <div class="checkbox mb-3 text-center">
                   <label for="name">
-                    <input style="margin-top: 10px" type="checkbox" name="RememberMe" [(ngModel)]="LoginModel.RememberMe"
-                           maxlength="50" #refRememberMe="ngModel" id="RememberMe" required> Remember me
+                    <input type="checkbox" name="RememberMe" [(ngModel)]="LoginModel.RememberMe"
+                           maxlength="50" #refRememberMe="ngModel" id="RememberMe"> Remember me
                   </label>
                 </div>
                 <!-- Change this to a button or input when using this as a form -->
                 <button type="submit" [disabled]="!f.form.valid"
                         class="btn btn-lg btn-success btn-block">Login
                 </button>
-                <div class="d-flex justify-content-around">
-                  <!-- Forgot Username / Password -->
-                  <div class="checkbox mb-3">
+                <!-- Forgot Username / Password -->
+                <div class="text-right">
                     <a [routerLink]='["/#/Login"]'>Forgot Username / Password?</a>
-                  </div>
-                  <!-- New users -->
-                  <div class="checkbox mb-3">
-                    <p>Are you a new user?</p>
-                  </div>
+                </div>
+                <hr />
+                <!-- Terms and Conditions Section -->
+                <div class="text-center">
+                  <small class="text-muted">
+                    By logging in, I agree to the <a [routerLink]='["/#/Login"]'>T&Cs</a>.
+                  </small>
                 </div>
               </fieldset>
             </form>
